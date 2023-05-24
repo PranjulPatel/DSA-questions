@@ -1,0 +1,15 @@
+ public static String reverseWord(String str)
+    {
+        char[] alpha=str.toCharArray();
+        int i=0;
+        int j=str.length()-1;
+        while(i<=j){
+            char temp=alpha[i];
+            alpha[i]=alpha[j];
+            alpha[j]=temp;
+            j--;
+            i++;
+        }
+        String revstring=new String(alpha);
+        return new String(alpha);
+    }
