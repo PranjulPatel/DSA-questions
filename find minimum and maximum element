@@ -1,0 +1,17 @@
+ static pair getMinMax(long a[], long n)  
+    {   if(a.length==0 || a==null){
+        return new pair(0,0);
+    }
+        long min=a[0];
+        long max=a[0];
+        for(int i=1;i<n;i++){
+            if(a[i]<min){
+                min=a[i];
+            }
+            if(a[i]>max){
+                max=a[i];
+            }
+        }
+       pair p=new pair(min,max);
+       return p;
+    }
