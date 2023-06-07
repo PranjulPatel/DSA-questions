@@ -1,0 +1,55 @@
+class Solution {
+    public int findKthLargest(int[] nums, int k) {
+        Quicksort(nums,0,nums.length-1);
+        return nums[(nums.length)-k];
+
+    }
+
+    public static void Quicksort(int arr[],int si,int ei){
+        // base case
+        if(si>=ei){
+            return;
+        }
+        // partion step
+        int pivotpos=partition(arr,si,ei);
+        //recursive call
+        Quicksort(arr, si, pivotpos-1);
+        Quicksort(arr, pivotpos+1, ei);
+    }
+
+    private static int partition(int arr[],int si,int ei){
+        // finding pivot
+        int pivot=arr[si];
+        int count=0;
+       //placing pivot at its posititon
+        for(int i=si+1;i<=ei;i++){
+            if(arr[i]<=pivot){
+                count++;
+            }
+        }
+        int pivotpos=si+count;   
+        int temp=arr[si];
+        arr[si]=arr[pivotpos];
+        arr[pivotpos]=temp;
+        // ensure that the left elemnets of the pivot elements are less then the the pivot and the right elemnets are greter then the pivot
+        int i=si;
+        int j=ei;
+        while(i<pivotpos && j>pivotpos){
+           if(arr[i]<=arr[pivotpos]){
+            i++;
+           }
+           else if(arr[j]>arr[pivotpos]){
+            j--;
+           }
+           else{
+             int temp1=arr[i];
+             arr[i]=arr[j];
+             arr[j]=temp1;
+             i++;
+             j--;
+           }
+        }
+        //return pivot position
+        return pivotpos;
+    }
+}
