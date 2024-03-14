@@ -1,0 +1,35 @@
+class Solution {
+    public void nextPermutation(int[] nums) {
+        int ind1=-1,ind2=0;   // Define ind1 is equal to -1.
+        for(int i=nums.length-2;i>=0;i--){   // Start searching from the end of the array and find an element that is less than the value at its preceding index and store into the ind1.
+            if(nums[i]<nums[i+1]){
+                ind1=i;
+                break;
+            }
+        }
+        if(ind1==-1){   // Check if ind1 = -1 it means no one is less than the value at it's precending index so revrese the array and close the function using return.
+            reverse(nums,0,nums.length-1);
+            return;
+        }
+        for(int i=nums.length-1;i>ind1;i--){   // Start searching from the end of the array and find an element that is more than ind1 indexed value.
+            if(nums[ind1]<nums[i]){
+                ind2=i;
+                break;
+            }
+        }
+        swap(nums,ind1,ind2);   // Swap both indexes value to each other in the array nums.
+        reverse(nums,ind1+1,nums.length-1);   // After that reverse the array nums from ind+1 till last of the array.
+    }
+    void swap(int[] nums,int i,int j){   // Define swap function that has swaping two array values.
+        int temp = nums[i];
+        nums[i] = nums[j];
+        nums[j] = temp;
+    }
+    void reverse(int[] nums,int i,int j){   // Define Reverse function to perfom task of reversing array of elements.
+        while(i<j){
+            swap(nums,i,j);
+            i++;
+            j--;
+        }
+    }
+}
